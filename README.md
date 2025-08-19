@@ -70,6 +70,54 @@ Each component can be optimized independently or jointly.
 
 Remember to include WANDB_ENTITY and WANDB_PROJECT in the `.env` file or export them in your shell.
 
+## 🚀 Local Testing on Apple Silicon (M4 Mac Max)
+
+For local development and testing, especially on Apple Silicon with ample RAM:
+
+### Quick Local Setup
+```bash
+# Install with uv (recommended)
+uv pip install -e ".[dev]"
+
+# Test core functionality (no API keys needed)
+python -c "from optimas.arch.system import CompoundAISystem; print('✅ Optimas ready!')"
+
+# Run GEPA integration demo
+python examples/universal_gepa_demo.py --quick-test
+```
+
+### Using Local Models with Ollama
+```bash
+# Install Ollama for local LLM inference
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Pull recommended models for M4 Mac Max (128GB RAM)
+ollama pull llama3.1:8b      # Fast development (~5GB RAM)
+ollama pull qwen2.5:14b      # Good quality (~9GB RAM) 
+ollama pull llama3.1:70b     # Best quality (~80GB RAM)
+
+# Configure for local use
+export OPTIMAS_USE_LOCAL=true
+export OLLAMA_BASE_URL="http://localhost:11434"
+```
+
+### Verification Tests
+```bash
+# Test original functionality is preserved
+pytest tests/ -v
+
+# Test GEPA integration doesn't break anything  
+python -c "
+from optimas.arch.base import BaseComponent
+comp = BaseComponent('test', variable='prompt')
+print('✅ Original methods:', hasattr(comp, 'forward'))
+print('✅ GEPA methods:', hasattr(comp, 'gepa_optimizable_components'))
+print('✅ Non-breaking integration verified!')
+"
+```
+
+📖 **See [LOCAL_TESTING_GUIDE.md](LOCAL_TESTING_GUIDE.md) for comprehensive testing instructions and troubleshooting.**
+
 ## Advanced: Using GEPA with Custom Adapters and Logging
 
 Optimas supports GEPA as a prompt optimizer, with deep integration for DSPy-based systems. For advanced users, you can:

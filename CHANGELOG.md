@@ -14,6 +14,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - N/A
 
-## [0.1.0] - 2025-08-01
+## [0.1.0] - July 2025
 ### Added
 - First public release of Optimas.
