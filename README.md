@@ -107,16 +107,13 @@ export OLLAMA_BASE_URL="http://localhost:11434"
 pytest tests/ -v
 
 # Test GEPA integration doesn't break anything  
-python -c "
-from optimas.arch.base import BaseComponent
-comp = BaseComponent('test', variable='prompt')
-print('✅ Original methods:', hasattr(comp, 'forward'))
-print('✅ GEPA methods:', hasattr(comp, 'gepa_optimizable_components'))
-print('✅ Non-breaking integration verified!')
-"
+python resources/testing/test_gepa_integration.py --quick
+
+# Test with local Ollama models
+python resources/testing/test_gepa_local.py --model llama3.1:8b
 ```
 
-📖 **See [LOCAL_TESTING_GUIDE.md](LOCAL_TESTING_GUIDE.md) for comprehensive testing instructions and troubleshooting.**
+📖 **See [LOCAL_TESTING_GUIDE.md](resources/guides/LOCAL_TESTING_GUIDE.md) for comprehensive testing instructions and troubleshooting.**
 
 ## Advanced: Using GEPA with Custom Adapters and Logging
 

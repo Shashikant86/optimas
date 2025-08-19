@@ -161,7 +161,7 @@ print('✅ All GEPA interface methods work correctly')
 
 ```bash
 # Test 5: Universal GEPA demo (lightweight)
-python examples/universal_gepa_demo.py --quick-test
+python resources/demos/universal_gepa_demo.py --quick-test
 ```
 
 ### Level 3: Local Models Integration
