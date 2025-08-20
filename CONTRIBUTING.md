@@ -3,7 +3,7 @@
 Thank you for your interest in contributing to Optimas! We welcome contributions from the community.
 
 ## How to Contribute
-- **Bug Reports & Feature Requests:** Please use [GitHub Issues](https://github.com/stanfordnlp/optimas/issues).
+- **Bug Reports & Feature Requests:** Please use [GitHub Issues](https://github.com/snap-stanford/optimas/issues ).
 - **Pull Requests:** Fork the repo, create a feature branch, and submit a pull request (PR) with a clear description.
 - **Discussions:** For design or usage questions, open a GitHub Discussion or join our community chat.
 

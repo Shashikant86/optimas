@@ -307,43 +307,13 @@ class DSPyFeedbackExtractor:
             return "Start with basic instruction template and minimal requirements"
 
 
-class LangChainFeedbackExtractor:
-    """Feedback extractor for LangChain components (future use)."""
-    
-    def extract_feedback(
-        self,
-        inputs: Dict[str, Any],
-        outputs: Dict[str, Any],
-        score: float,
-        trace: Optional[ComponentTrace] = None,
-        error: Optional[Exception] = None
-    ) -> str:
-        """Extract LangChain-specific feedback from component execution."""
-        feedback_parts = [f"LangChain Score: {score:.3f}"]
-        
-        # Add chain analysis
-        if trace and hasattr(trace, 'metadata'):
-            chain_info = trace.metadata.get('chain_type', '')
-            if chain_info:
-                feedback_parts.append(f"Chain Type: {chain_info}")
-        
-        # Basic input/output analysis (can be expanded)
-        if inputs:
-            feedback_parts.append(f"Inputs: {list(inputs.keys())}")
-        if outputs:
-            feedback_parts.append(f"Outputs: {list(outputs.keys())}")
-        
-        if error:
-            feedback_parts.append(f"Chain Error: {str(error)}")
-        
-        return " | ".join(feedback_parts)
 
 
 def get_feedback_extractor(component_type: str) -> FeedbackExtractor:
     """Factory function to get appropriate feedback extractor.
     
     Args:
-        component_type: Type of component ('crewai', 'openai', 'dspy', 'langchain')
+        component_type: Type of component ('crewai', 'openai', 'dspy')
         
     Returns:
         Appropriate feedback extractor instance
@@ -352,7 +322,6 @@ def get_feedback_extractor(component_type: str) -> FeedbackExtractor:
         'crewai': CrewAIFeedbackExtractor(),
         'openai': OpenAIFeedbackExtractor(), 
         'dspy': DSPyFeedbackExtractor(),
-        'langchain': LangChainFeedbackExtractor(),
         'default': DefaultFeedbackExtractor()
     }
     
