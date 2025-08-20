@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies (with uv)
         run: |
-          uv pip install .[dev]
+          uv pip install --system .[dev]
         continue-on-error: true
 
       - name: Fallback to pip if uv fails
